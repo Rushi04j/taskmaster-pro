@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMaster Pro - Advanced Task Management</title>
+    <meta name="description" content="TaskMaster Pro - A premium task management application with advanced features, beautiful UI, and seamless user experience.">
+    <meta name="theme-color" content="#6366f1">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✅</text></svg>">
+</head>
+<body>
+    <!-- Background Decorations -->
+    <div class="bg-decoration">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="floating-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle-container">
+        <div class="theme-toggle" id="theme-toggle">
+            <div class="toggle-track">
+                <div class="toggle-thumb">
+                    <i class="fas fa-sun sun-icon"></i>
+                    <i class="fas fa-moon moon-icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Container -->
+    <div class="app-container">
+        <div class="container">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="header-content">
+                    <div class="logo-section">
+                        <div class="logo">
+                            <div class="logo-icon">
+                                <div class="logo-glow"></div>
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div class="logo-text">
+                                <h1>TaskMaster <span class="pro-badge">Pro</span></h1>
+                                <p class="tagline">Elevate your productivity to new heights</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stats Dashboard -->
+                    <div class="stats-dashboard">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-list-ul"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="total-tasks">0</span>
+                                <span class="stat-label">Total Tasks</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="completed-tasks">0</span>
+                                <span class="stat-label">Completed</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon warning">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="pending-tasks">0</span>
+                                <span class="stat-label">Pending</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon danger">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="overdue-tasks">0</span>
+                                <span class="stat-label">Overdue</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="progress-ring-container">
+                                <svg class="progress-ring" width="120" height="120">
+                                    <circle class="progress-ring-background" cx="60" cy="60" r="50"></circle>
+                                    <circle class="progress-ring-progress" cx="60" cy="60" r="50" id="progress-circle"></circle>
+                                </svg>
+                                <div class="progress-text">
+                                    <span class="progress-percentage" id="progress-percentage">0%</span>
+                                    <span class="progress-label">Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Task Input Section -->
+            <section class="task-input-section">
+                <div class="input-container">
+                    <div class="section-header">
+                        <h2><i class="fas fa-plus-circle"></i> Add New Task</h2>
+                        <p>Create and organize your tasks with advanced options</p>
+                    </div>
+                    
+                    <form class="input-form" id="task-form">
+                        <div class="primary-input">
+                            <div class="input-wrapper">
+                                <i class="fas fa-edit input-icon"></i>
+                                <input type="text" id="new-task" placeholder="What needs to be done?" maxlength="200" autocomplete="off">
+                                <div class="input-border"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="input-options">
+                            <div class="option-group">
+                                <label for="task-priority">
+                                    <i class="fas fa-flag"></i>
+                                    Priority Level
+                                </label>
+                                <select id="task-priority" class="styled-select">
+                                    <option value="low">Low Priority</option>
+                                    <option value="medium" selected>Medium Priority</option>
+                                    <option value="high">High Priority</option>
+                                </select>
+                            </div>
+                            
+                            <div class="option-group">
+                                <label for="task-due-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    Due Date
+                                </label>
+                                <input type="date" id="task-due-date" class="styled-input">
+                            </div>
+                            
+                            <div class="option-group">
+                                <label for="task-category">
+                                    <i class="fas fa-tag"></i>
+                                    Category
+                                </label>
+                                <input type="text" id="task-category" class="styled-input" placeholder="e.g., Work, Personal, Study" maxlength="50">
+                            </div>
+                            
+                            <div class="option-group">
+                                <button type="submit" class="add-task-button" id="add-task-btn">
+                                    <div class="btn-glow"></div>
+                                    <div class="btn-content">
+                                        <i class="fas fa-plus"></i>
+                                        <span>Add Task</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Controls Section -->
+            <section class="controls-section">
+                <div class="controls-header">
+                    <h3><i class="fas fa-sliders-h"></i> Task Management</h3>
+                </div>
+                
+                <!-- Search -->
+                <div class="search-container">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="search-tasks" placeholder="Search tasks or categories..." autocomplete="off">
+                        <div class="search-border"></div>
+                    </div>
+                </div>
+                
+                <!-- Filter Tabs -->
+                <div class="filter-tabs">
+                    <div class="tab-group">
+                        <h4>Filter by Status</h4>
+                        <div class="tabs">
+                            <button class="tab-btn active" data-filter="all">
+                                <span>All Tasks</span>
+                                <span class="tab-count" id="count-all">0</span>
+                            </button>
+                            <button class="tab-btn" data-filter="pending">
+                                <span>Pending</span>
+                                <span class="tab-count" id="count-pending">0</span>
+                            </button>
+                            <button class="tab-btn" data-filter="completed">
+                                <span>Completed</span>
+                                <span class="tab-count" id="count-completed">0</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-group">
+                        <h4>Filter by Priority</h4>
+                        <div class="tabs">
+                            <button class="tab-btn priority-high" data-filter="high">
+                                <span>High</span>
+                                <span class="tab-count" id="count-high">0</span>
+                            </button>
+                            <button class="tab-btn priority-medium" data-filter="medium">
+                                <span>Medium</span>
+                                <span class="tab-count" id="count-medium">0</span>
+                            </button>
+                            <button class="tab-btn priority-low" data-filter="low">
+                                <span>Low</span>
+                                <span class="tab-count" id="count-low">0</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-group">
+                        <h4>Filter by Date</h4>
+                        <div class="tabs">
+                            <button class="tab-btn" data-filter="today">
+                                <span>Due Today</span>
+                                <span class="tab-count" id="count-today">0</span>
+                            </button>
+                            <button class="tab-btn" data-filter="overdue">
+                                <span>Overdue</span>
+                                <span class="tab-count" id="count-overdue">0</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Action Controls -->
+                <div class="action-controls">
+                    <div class="control-group">
+                        <label>
+                            <i class="fas fa-sort"></i>
+                            Sort Tasks
+                        </label>
+                        <select id="sort-tasks" class="styled-select">
+                            <option value="created">Date Created</option>
+                            <option value="priority">Priority Level</option>
+                            <option value="dueDate">Due Date</option>
+                            <option value="alphabetical">Alphabetical</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>
+                            <i class="fas fa-eye"></i>
+                            View Mode
+                        </label>
+                        <div class="view-toggle">
+                            <button class="view-btn active" data-view="list">
+                                <i class="fas fa-list"></i>
+                            </button>
+                            <button class="view-btn" data-view="grid">
+                                <i class="fas fa-th"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <button class="action-btn danger" id="clear-completed">
+                        <i class="fas fa-trash-alt"></i>
+                        <span>Clear Completed</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Task List Section -->
+            <section class="task-list-section">
+                <div class="section-header">
+                    <h3 id="current-filter-title">All Tasks</h3>
+                    <div class="task-counter">
+                        <span id="visible-tasks-count">0</span> tasks visible
+                    </div>
+                </div>
+                
+                <div class="task-list-container">
+                    <ul class="task-list" id="task-list"></ul>
+                    
+                    <div class="empty-state" id="empty-state" style="display: none;">
+                        <div class="empty-illustration">
+                            <div class="empty-glow"></div>
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <h3>No tasks found</h3>
+                        <p>Start by adding your first task or adjust your filters to see existing tasks.</p>
+                        <button class="empty-action-btn" onclick="document.getElementById('new-task').focus()">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Your First Task</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="app-footer">
+                <div class="footer-content">
+                    <div class="footer-decoration">
+                        <div class="footer-orb"></div>
+                        <div class="footer-particles">
+                            <div class="footer-particle"></div>
+                            <div class="footer-particle"></div>
+                            <div class="footer-particle"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-main">
+                        <div class="creator-section">
+                            <div class="creator-avatar">
+                                <div class="avatar-glow"></div>
+                                <div class="avatar-ring">
+                                    <div class="avatar-inner">
+                                        <i class="fas fa-code"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="creator-info">
+                                <p class="creator-name">
+                                    Made with <i class="fas fa-heart heart-icon"></i> by
+                                </p>
+                                <h2 class="creator-title">Rushikesh Joshi</h2>
+                                <p class="creator-subtitle">Frontend Developer & UI/UX Enthusiast</p>
+                                <div class="creator-links">
+                                    <a href="https://github.com/Rushi04j" class="social-link" target="_blank" rel="noopener" title="GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/rushikesh-joshi2004/" class="social-link" target="_blank" rel="noopener" title="LinkedIn">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://portfolio-website-sigma-gules-49.vercel.app/" class="social-link" title="Portfolio">
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="app-info">
+                            <div class="app-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-code"></i>
+                                    <span>Built with modern web technologies</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>Fully responsive & PWA ready</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-palette"></i>
+                                    <span>Beautiful dark/light themes</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>Optimized for performance</span>
+                                </div>
+                            </div>
+                            
+                            <div class="tech-stack">
+                                <h4>Built With</h4>
+                                <div class="tech-icons">
+                                    <div class="tech-icon" title="HTML5">
+                                        <i class="fab fa-html5"></i>
+                                    </div>
+                                    <div class="tech-icon" title="CSS3">
+                                        <i class="fab fa-css3-alt"></i>
+                                    </div>
+                                    <div class="tech-icon" title="JavaScript">
+                                        <i class="fab fa-js-square"></i>
+                                    </div>
+                                    <div class="tech-icon" title="Progressive Web App">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-bottom">
+                        <div class="copyright">
+                            <p>&copy; 2024 TaskMaster Pro. Crafted with passion and precision.</p>
+                            <p class="love-note">Every line of code written with care for the best user experience.</p>
+                        </div>
+                        <div class="footer-links">
+                            <a href="#" class="footer-link">Privacy Policy</a>
+                            <a href="#" class="footer-link">Terms of Service</a>
+                            <a href="#" class="footer-link">Support</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scroll-to-top" title="Scroll to top">
+        <div class="scroll-glow"></div>
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Edit Task Modal -->
+    <div class="modal" id="edit-modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <i class="fas fa-edit"></i>
+                    <h2>Edit Task</h2>
+                </div>
+                <button class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="form-section">
+                    <label for="edit-task-text">Task Description</label>
+                    <div class="textarea-wrapper">
+                        <textarea id="edit-task-text" placeholder="Enter task description..." maxlength="200"></textarea>
+                        <div class="textarea-border"></div>
+                    </div>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-section">
+                        <label for="edit-task-priority">Priority</label>
+                        <select id="edit-task-priority" class="styled-select">
+                            <option value="low">Low Priority</option>
+                            <option value="medium">Medium Priority</option>
+                            <option value="high">High Priority</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-section">
+                        <label for="edit-task-due-date">Due Date</label>
+                        <input type="date" id="edit-task-due-date" class="styled-input">
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <label for="edit-task-category">Category</label>
+                    <input type="text" id="edit-task-category" class="styled-input" placeholder="e.g., Work, Personal, Study" maxlength="50">
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-edit-btn">
+                    <i class="fas fa-times"></i>
+                    <span>Cancel</span>
+                </button>
+                <button class="btn btn-primary" id="save-edit-btn">
+                    <i class="fas fa-save"></i>
+                    <span>Save Changes</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+        </div>
+        <p>Loading TaskMaster Pro...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
